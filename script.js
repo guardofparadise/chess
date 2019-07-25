@@ -10,7 +10,6 @@ let chess = [
 ];
 
 function draw() {
-	let out = '';
 
 	document.querySelector('#field').innerHTML = '';
 	let m = 0;
@@ -41,7 +40,6 @@ function activate(var_x, num_x, var_y, num_y,cond) {
 	} else {
 		console.log('wrong argument')
 	}
-
 }
 
 function horse() {
@@ -67,3 +65,35 @@ function horse() {
 }
 
 draw();
+
+function map(arr, fn) {
+	var newArr = [];
+	for(var i = 0; i < arr.length; i++) {
+		newArr[i] = arr[i];
+	}
+	for(var i = 0; i < newArr.length; i++) {
+		newArr[i] = fn(newArr[i])
+	}
+	return newArr;
+}
+
+map(vlad, function(val){
+	return val * 2;
+});
+
+
+
+Array.prototype.mymap = function(cb) {
+	const resArr = [];
+	for(let i = 0; i < this.length; i++) {
+		resArr.push(cb(this[i], i , this));
+	}
+	return resArr;
+}
+
+const vlad = [1,2,3,4];
+
+var output = vlad.mymap((val,i,arr) => {
+	console.log(val, i, arr);
+	return val*2;
+})
